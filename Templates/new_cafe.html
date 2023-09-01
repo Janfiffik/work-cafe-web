@@ -1,0 +1,10 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+<div class="new_main">
+  <div class="add_form">
+    <h2 class="heading">Add Cafe</h2>
+    {{ wtf.quick_form(form, novalidate=True) }}
+  </div>
+</div>
+{% include "footer.html" %}

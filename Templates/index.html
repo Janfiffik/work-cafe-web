@@ -1,0 +1,83 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include "header.html" %}
+
+<div class="main_div_index">
+    <div class="cafe_column">
+    {% for cafe in cafes %}
+                <div class="cafe_container" >
+                    <div class="image_container">
+                        <img src="{{ cafe[3] }}" class="rounded float" alt="Image not found" width="170" height="170">
+                    </div>
+                    <div class="image_text">
+                        <a class="map_link" href="{{ cafe[2]}}" ><h4>{{ cafe[1] }}</h4></a>
+                        <h6>|Seats: {{ cafe[9] }}| Price: {{ cafe[10] }}| Location: {{ cafe[4] }}</h6>
+                        <br>
+                        {% if cafe[8] == 1 %}
+                            <img src="static/images/call.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% else %}
+                            <img src="static/images/call_not.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% endif %}
+
+                        {% if cafe[6] == 1 %}
+                            <img src="static/images/restroom.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% else %}
+                            <img src="static/images/restroom_not.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% endif %}
+
+                        {% if cafe[7] == 1 %}
+                            <img src="static/images/WiFi.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% else %}
+                            <img src="static/images/WiFi_not.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% endif %}
+                        {% if cafe[5] == 1 %}
+                            <img src="static/images/socket.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% else %}
+                            <img src="static/images/socket_not.png" class="rounded float" alt="Image not found" width="40" height="40">
+                        {% endif %}
+
+                        <button class="button delete">
+                            <a href="{{url_for('delete', id=cafe[0])}}">
+                                <img src="static/images/delete.png" alt="Image not found" class="rounded" width="40" height="40">
+                            </a>
+                        </button>
+                    </div>
+                </div>
+    {% endfor %}
+    </div>
+
+    <div class="filter_container">
+            <h3>Filter:</h3>
+
+            <h5>Sockets:</h5>
+            <button class="button">
+                <a href="{{url_for('filter_cafe', filter='has_sockets')}}">
+                    <img src="static/images/socket.png" class="rounded float" alt="Image not found" width="50" height="50">
+                </a>
+            </button>
+
+            <h5>Rest Room:</h5>
+            <button class="button">
+                <a href="{{url_for('filter_cafe', filter='has_toilet')}}">
+                    <img src="static/images/restroom.png" class="rounded float" alt="Image not found" width="50" height="50">
+                </a>
+            </button>
+
+            <h5>WiFi:</h5>
+            <button class="button">
+                <a href="{{url_for('filter_cafe', filter='has_wifi')}}">
+                    <img src="static/images/WiFi.png" class="rounded float" alt="Image not found" width="50" height="50">
+                </a>
+            </button>
+
+            <h5>Calls:</h5>
+            <button class="button">
+                <a href="{{url_for('filter_cafe', filter='can_take_calls')}}">
+                    <img src="static/images/call.png" class="rounded float" alt="Image not found" width="50" height="50">
+                </a>
+            </button>
+
+    </div>
+</div>
+
+{% include "footer.html" %}
